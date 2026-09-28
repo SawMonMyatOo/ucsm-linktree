@@ -49,6 +49,7 @@ import {
   User,
   Users,
   Wrench,
+  Speech,
 } from "lucide-react";
 
 export const iconRegistry = {
@@ -102,6 +103,7 @@ export const iconRegistry = {
   user: User,
   users: Users,
   wrench: Wrench,
+  speech: Speech,
 } as const;
 
 export type IconName = keyof typeof iconRegistry;

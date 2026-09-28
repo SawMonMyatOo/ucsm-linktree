@@ -9,7 +9,7 @@ import type { BrandName } from "@/lib/brand-icons";
 export const site = {
   name: "University of Computer Studies, Mandalay",
   shortName: "UCSM",
-  eyebrow: "Patheingyi, Mandalay, Myanmar",
+  eyebrow: "Patheingyi, Myanmar",
   tagline: "Shaping digital futures since 1997",
   shortDescription:
     "The national institute of computer studies in Myanmar — undergraduate and graduate programmes in computing, information technology and business computing.",
@@ -26,15 +26,15 @@ export const site = {
 
   contact: {
     // TODO: replace with the real reception number.
-    phone: "+95 9 000 000 000",
-    phoneHref: "+959000000000",
+    phone: "+95 9 783 338 665",
+    phoneHref: "+959783338665",
     // TODO: replace with the real admissions / general enquiries inbox.
     email: "info@ucsmsc.org",
     // TODO: replace with the campus address.
-    address: "Mandalay, Myanmar",
+    address: "Mandalay - Mogoke Rd., Patheingyi Township, Mandalay, Myanmar, 05071",
     // Keyless embed that resolves from the place name. Swap for a lat/lng
     // query or your own Google Maps embed URL if you prefer.
-    mapQuery: "University of Computer Studies, Mandalay, Myanmar",
+    mapQuery: "University of Computer Studies, Mandalay, Patheingyi Township, Mandalay, Myanmar",
   },
 } as const;
 

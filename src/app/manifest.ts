@@ -12,9 +12,9 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#7A2028",
     icons: [
       {
-        src: "/ucsm_logo.png",
+        src: "/ucsm_logo.svg",
         sizes: "512x512",
-        type: "image/png",
+        type: "image/svg",
         purpose: "any",
       },
     ],

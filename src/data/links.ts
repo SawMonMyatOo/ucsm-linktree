@@ -47,28 +47,28 @@ export const primaryLinks: LinkItem[] = [
   {
     title: "Admissions",
     description: "Apply for the new academic year",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/entranceinfo/",
     icon: "graduationCap",
   },
   {
     title: "Student Portal",
     description: "Registration, results and course materials",
-    href: "https://www.ucsm.edu.mm",
+    href: "http://lms.ucsm.edu.mm",
     icon: "user",
   },
-  {
+  /*{
     title: "Academic Calendar",
     description: "Timetables, semesters and term dates",
     href: "https://www.ucsm.edu.mm",
     icon: "calendar",
-  },
+  },*/
   {
     title: "Library",
     description: "Catalogues, journals and study resources",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/ucsm-e-library/",
     icon: "library",
   },
-  {
+  /*{
     title: "Examinations & Results",
     description: "Exam schedules and published results",
     href: "https://www.ucsm.edu.mm",
@@ -79,11 +79,11 @@ export const primaryLinks: LinkItem[] = [
     description: "Grants, bursaries and fee assistance",
     href: "https://www.ucsm.edu.mm",
     icon: "award",
-  },
+  },*/
   {
     title: "Research & Publications",
     description: "Journals, conferences and academic output",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/research/",
     icon: "scroll",
   },
   {
@@ -103,56 +103,56 @@ export const faculties: Faculty[] = [
     name: "Faculty of Computer Science",
     code: "FCS",
     description: "Programming, algorithms, systems and theory.",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/fcs/",
     icon: "code",
   },
   {
     name: "Faculty of Information Science",
     code: "FIS",
     description: "Networks, infrastructure and IT service management.",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/fis/",
     icon: "server",
   },
   {
     name: "Faculty of Computer Systems and Technologies",
     code: "FCST",
     description: "Software for business, ERP and enterprise systems.",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/fcst/",
     icon: "building",
   },
   {
     name: "Faculty of Computing",
     code: "FC",
     description: "Design, architecture and project management.",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/fc/",
     icon: "layers",
   },
   {
     name: "Department of Information Technology Support and Maintenance",
     code: "DITSM",
     description: "Statistics, machine learning and data engineering.",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/facultiesanddepartments/",
     icon: "database",
   },
   {
     name: "Department of Physics",
     code: "DP",
     description: "Hardware, embedded systems and electronics.",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/dns",
     icon: "cpu",
   },
   {
     name: "Department of Myanmar",
     code: "DM",
     description: "Security operations, forensics and assurance.",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/dns/",
     icon: "shield",
   },
   {
     name: "Department of English",
     code: "DE",
     description: "Language skills for computer professionals.",
-    href: "https://www.ucsm.edu.mm",
+    href: "https://www.ucsm.edu.mm/dns/",
     icon: "speech",
   },
 ];

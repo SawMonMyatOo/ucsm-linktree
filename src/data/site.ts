@@ -31,10 +31,10 @@ export const site = {
     // TODO: replace with the real admissions / general enquiries inbox.
     email: "info@ucsmsc.org",
     // TODO: replace with the campus address.
-    address: "Mandalay - Mogoke Rd., Patheingyi Township, Mandalay, Myanmar, 05071",
+    address: "Mandalay - Mogok Rd., Patheingyi Township, Mandalay, Myanmar, 05071",
     // Keyless embed that resolves from the place name. Swap for a lat/lng
     // query or your own Google Maps embed URL if you prefer.
-    mapQuery: "University of Computer Studies, Mandalay, Patheingyi Township, Mandalay, Myanmar",
+    mapQuery: "University of Computer Studies, Mandalay, Mandalay, Myanmar",
   },
 } as const;
 
@@ -91,5 +91,19 @@ export const socials: Social[] = [
   },
 ];
 
+/**
+ * The host every canonical URL, sitemap entry, robots host and QR code points
+ * at. Non-www requests are redirected here in production.
+ */
+export const canonicalHost = "www.ucsmsc.org";
+
+/**
+ * The only Host headers the production site answers to. Anything else is
+ * redirected to the canonical host by `src/proxy.ts`. Add extra hosts (e.g. a
+ * preview deployment) with the `ALLOWED_HOSTS` environment variable.
+ */
+export const allowedHosts = [canonicalHost, "ucsmsc.org"] as const;
+
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://ucsmsc.org";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  `https://${canonicalHost}`;

@@ -123,12 +123,22 @@ Set in **Vercel → Project → Settings → Environment Variables** for all
 environments:
 
 ```
-NEXT_PUBLIC_SITE_URL=https://ucsmsc.org
+NEXT_PUBLIC_SITE_URL=https://www.ucsmsc.org
 ```
 
 It is used for the canonical URL, Open Graph tags, the sitemap, `robots.txt`
-and the QR code on the page. The default is already `https://ucsmsc.org`, so
-the site works even if you skip this.
+and the QR code on the page. The default is already `https://www.ucsmsc.org`,
+so the site works even if you skip this.
+
+In production `src/proxy.ts` serves the site **only** on
+`https://www.ucsmsc.org` and `https://ucsmsc.org`. Any other host (a Vercel
+preview URL, a typo domain) and plain `http` are 308-redirected to
+`https://www.ucsmsc.org`; local development is unaffected. To keep an extra
+host reachable, add it to the server-only `ALLOWED_HOSTS` variable:
+
+```
+ALLOWED_HOSTS=my-project.vercel.app
+```
 
 A copy lives in `.env.example`.
 

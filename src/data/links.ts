@@ -178,7 +178,7 @@ export const announcements: Announcement[] = [
     excerpt:
       "The full examination timetable for every faculty has been published on the portal.",
     href: "https://www.ucsm.edu.mm",
-    image: "/assets/thumbs/news-2.jpg",
+    image: "/assets/thumbs/news-1.jpg",
   },
   {
     title: "Faculty Orientation Week",
@@ -187,6 +187,6 @@ export const announcements: Announcement[] = [
     excerpt:
       "Orientation for first-year students across all faculties, including lab induction and campus tour.",
     href: "https://www.ucsm.edu.mm",
-    image: "/assets/thumbs/news-3.jpg",
+    image: "/assets/thumbs/news-1.jpg",
   },
 ];

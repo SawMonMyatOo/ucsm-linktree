@@ -8,16 +8,18 @@ const hostAllowList = new Set<string>([
     .filter(Boolean),
 ]);
 
-function forwardedProtocol(request: NextRequest): string {
-  const header = request.headers.get("x-forwarded-proto");
-  const first = header?.split(",")[0]?.trim();
-  return (first || request.nextUrl.protocol).replace(/:$/, "");
+function canonicalRedirect(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  url.protocol = "https:";
+  url.hostname = canonicalHost;
+  url.port = "";
+  return NextResponse.redirect(url, 308);
 }
 
 /**
- * Production guard: serve the site only on the university's own https domains
- * and send everything else (apex host, plain http, unknown hosts such as
- * Vercel preview URLs) to the canonical origin.
+ * Defence in depth for the canonical-host rule: `redirects()` in
+ * `next.config.ts` already handles the apex host, this catches every other
+ * unknown host (preview deployments, typo domains) in production.
  */
 export function proxy(request: NextRequest) {
   if (process.env.NODE_ENV !== "production") return NextResponse.next();
@@ -26,15 +28,10 @@ export function proxy(request: NextRequest) {
     .toLowerCase()
     .replace(/:\d+$/, "");
 
-  if (host !== canonicalHost || !hostAllowList.has(host) || forwardedProtocol(request) !== "https") {
-    const url = request.nextUrl.clone();
-    url.protocol = "https:";
-    url.hostname = canonicalHost;
-    url.port = "";
-    return NextResponse.redirect(url, 308);
-  }
+  if (host === canonicalHost) return NextResponse.next();
+  if (hostAllowList.has(host)) return canonicalRedirect(request);
 
-  return NextResponse.next();
+  return canonicalRedirect(request);
 }
 
 export const config = {

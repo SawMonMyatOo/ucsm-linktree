@@ -130,15 +130,31 @@ It is used for the canonical URL, Open Graph tags, the sitemap, `robots.txt`
 and the QR code on the page. The default is already `https://www.ucsmsc.org`,
 so the site works even if you skip this.
 
-In production `src/proxy.ts` serves the site **only** on
-`https://www.ucsmsc.org` and `https://ucsmsc.org`. Any other host (a Vercel
-preview URL, a typo domain) and plain `http` are 308-redirected to
-`https://www.ucsmsc.org`; local development is unaffected. To keep an extra
-host reachable, add it to the server-only `ALLOWED_HOSTS` variable:
+In production the site is served **only** on `https://www.ucsmsc.org` and
+`https://ucsmsc.org`. This is enforced twice:
+
+1. `redirects()` in `next.config.ts` — evaluated in the routing layer, before
+   the filesystem, the CDN cache and `src/proxy.ts`, so it fires even for
+   statically prerendered pages.
+2. `src/proxy.ts` — catches anything else in production (preview deployment
+   URLs, typo domains).
+
+Apex `ucsmsc.org` and plain `http` get a 308 to `https://www.ucsmsc.org`;
+local development is untouched. To keep an extra host reachable, add it to the
+server-only `ALLOWED_HOSTS` variable:
 
 ```
 ALLOWED_HOSTS=my-project.vercel.app
 ```
+
+> If Vercel is configured with both domains attached, Vercel's own edge picks
+> one of them as the primary domain and answers it before this app runs. Check
+> **Project → Settings → Domains**: make `www.ucsmsc.org` primary, and either
+> leave `ucsmsc.org` attached (this redirect handles it) or remove it and point
+> it at `www` with a registrar-level redirect.
+>
+> Verify after deploying: `curl -sI https://ucsmsc.org/` must answer
+> `308` with `location: https://www.ucsmsc.org/`.
 
 A copy lives in `.env.example`.
 

@@ -34,7 +34,7 @@ export const site = {
     address: "Mandalay - Mogok Rd., Patheingyi Township, Mandalay, Myanmar, 05071",
     // Keyless embed that resolves from the place name. Swap for a lat/lng
     // query or your own Google Maps embed URL if you prefer.
-    mapQuery: "University of Computer Studies, Mandalay, Mandalay, Myanmar",
+    mapQuery: "45FM+678, Kangyi, Myanmar (Burma)",
   },
 } as const;
 

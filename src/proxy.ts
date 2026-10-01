@@ -35,5 +35,10 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  /**
+   * Skips `/_next/*` and every path that ends in a file extension, so static
+   * assets (fonts, images, `robots.txt`, `sitemap.xml`, ...) are served
+   * directly instead of being bounced through the canonical-host redirect.
+   */
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.[\\w]+$).*)"],
 };

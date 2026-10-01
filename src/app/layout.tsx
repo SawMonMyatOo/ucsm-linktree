@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Inter, Source_Serif_4 } from "next/font/google";
+import localFont from "next/font/local";
 import { CookieBanner } from "@/components/cookie-banner";
 import { LanguageProvider } from "@/context/language-context";
 import { site, siteUrl } from "@/data/site";
@@ -16,6 +17,22 @@ const display = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-display-family",
   display: "swap",
+});
+
+/**
+ * The only Myanmar face available is a single Bold cut, so it is registered at
+ * weight 700 — every `font-medium`/`font-semibold` element resolves to the real
+ * outline instead of a synthetically emboldened one. Fallbacks cover devices
+ * where the download fails, and the Arial metric-override face is disabled
+ * because those overrides do not apply to Myanmar glyphs.
+ */
+const myanmar = localFont({
+  src: "./fonts/NotoSansMyanmarUI-Bold.ttf",
+  weight: "700",
+  display: "swap",
+  variable: "--font-myanmar-family",
+  fallback: ["Pyidaungsu", "Myanmar Text", "Padauk", "sans-serif"],
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -85,7 +102,7 @@ export default function RootLayout({
       lang="en"
       data-theme="light"
       suppressHydrationWarning
-      className={`${sans.variable} ${display.variable}`}
+      className={`${sans.variable} ${display.variable} ${myanmar.variable}`}
     >
       <head>
         <script

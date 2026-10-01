@@ -6,23 +6,15 @@
   ===========================================================================
   CUSTOM FONT CONFIGURATION
   ---------------------------------------------------------------------------
-  To use your custom font:
-  1. Place your font file (e.g. MyFont.woff2 or MyFont.ttf) inside `public/fonts/`.
-  2. Uncomment and configure the @font-face rule below.
+  The Myanmar face is declared with `next/font/local` in `app/layout.tsx`,
+  which self-hosts it as a hashed build asset. `--font-myanmar-family` carries
+  the generated family name plus its fallback stack, so the rule below is all
+  the CSS this project needs.
   ===========================================================================
 */
 
-@font-face {
-  font-family: "CustomFont";
-  src: url("/fonts/NOTOSAN_MYANMAR_UI_BOLD.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-
 .font-custom {
-  font-family: "CustomFont", "Pyidaungsu", "Myanmar Text", "Padauk", sans-serif;
+  font-family: var(--font-myanmar-family);
 }
 
 :root,

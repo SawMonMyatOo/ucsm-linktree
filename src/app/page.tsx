@@ -1,6 +1,7 @@
 import { Announcements } from "@/components/announcements";
 import { ContactFooter } from "@/components/contact-footer";
 import { FacultyGrid } from "@/components/faculty-grid";
+import Link from "next/link";
 import { LinkList } from "@/components/link-list";
 import { Reveal } from "@/components/reveal";
 import { ShareQr } from "@/components/share-qr";
@@ -69,6 +70,24 @@ export default function Home() {
           <p className="text-xs text-on-brand/50">
             &copy; {new Date().getFullYear()} {site.name}
           </p>
+          <nav
+            aria-label="Policies"
+            className="flex items-center gap-4 text-xs text-on-brand/70"
+          >
+            <Link
+              href="/privacy"
+              className="underline-offset-2 transition-colors hover:text-on-brand hover:underline"
+            >
+              Privacy Policy
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link
+              href="/cookies"
+              className="underline-offset-2 transition-colors hover:text-on-brand hover:underline"
+            >
+              Cookie Policy
+            </Link>
+          </nav>
         </div>
       </footer>
     </>

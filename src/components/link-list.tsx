@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
 import { Glyph } from "@/components/glyph";
 import { Reveal } from "@/components/reveal";
@@ -5,8 +7,12 @@ import { SectionHeading } from "@/components/section-heading";
 import { primaryLinks } from "@/data/links";
 import { site } from "@/data/site";
 import type { LinkItem } from "@/data/links";
+import { useLanguage } from "@/context/language-context";
+import { uiStrings } from "@/data/translations";
 
 function LinkRow({ item, index }: { item: LinkItem; index: number }) {
+  const { t } = useLanguage();
+
   return (
     <Reveal delay={index * 45}>
       <a
@@ -21,10 +27,10 @@ function LinkRow({ item, index }: { item: LinkItem; index: number }) {
 
         <span className="min-w-0 flex-1">
           <span className="block truncate text-[0.95rem] font-semibold text-text">
-            {item.title}
+            {t(item.title)}
           </span>
           <span className="mt-0.5 block truncate text-xs text-muted">
-            {item.description}
+            {t(item.description)}
           </span>
         </span>
 
@@ -38,14 +44,15 @@ function LinkRow({ item, index }: { item: LinkItem; index: number }) {
 }
 
 export function LinkList() {
+  const { t } = useLanguage();
   const [featured, ...rest] = primaryLinks;
 
   return (
     <section id="links" className="scroll-mt-24 py-14 sm:py-20">
       <SectionHeading
-        eyebrow="Everything in one place"
-        title="Quick links"
-        description="Jump straight to the pages students, applicants and visitors use most."
+        eyebrow={t(uiStrings.linkList.eyebrow)}
+        title={t(uiStrings.linkList.title)}
+        description={t(uiStrings.linkList.description)}
       />
 
       <div className="flex flex-col gap-3">
@@ -63,10 +70,10 @@ export function LinkList() {
 
               <span className="min-w-0 flex-1">
                 <span className="block text-xs font-semibold tracking-[0.16em] text-accent uppercase">
-                  Official
+                  {t(uiStrings.linkList.officialBadge)}
                 </span>
                 <span className="mt-1 block text-lg font-semibold">
-                  {featured.title}
+                  {t(featured.title)}
                 </span>
                 <span className="mt-0.5 block text-xs text-on-brand/75">
                   {site.officialWebsite.replace(/^https?:\/\//, "")}
@@ -82,7 +89,7 @@ export function LinkList() {
         ) : null}
 
         {rest.map((item, index) => (
-          <LinkRow key={item.title} item={item} index={index} />
+          <LinkRow key={item.title.en} item={item} index={index} />
         ))}
       </div>
     </section>

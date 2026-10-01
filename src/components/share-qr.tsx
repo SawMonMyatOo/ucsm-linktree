@@ -3,6 +3,8 @@
 import { useRef, useState } from "react";
 import QRCode from "react-qr-code";
 import { Check, Download, Link2, Share2 } from "lucide-react";
+import { useLanguage } from "@/context/language-context";
+import { uiStrings } from "@/data/translations";
 
 type ShareQrProps = {
   url: string;
@@ -15,6 +17,7 @@ const downloadButton =
   "inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent-deep";
 
 export function ShareQr({ url, name }: ShareQrProps) {
+  const { t } = useLanguage();
   const qrRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState<ActionState>("idle");
   const [shared, setShared] = useState<ActionState>("idle");
@@ -45,19 +48,37 @@ export function ShareQr({ url, name }: ShareQrProps) {
     }
   }
 
-  function downloadSvg() {
+  async function downloadPng() {
     const svg = qrRef.current?.querySelector("svg");
     if (!svg) return;
 
-    const markup = new XMLSerializer().serializeToString(svg);
-    const blob = new Blob([markup], { type: "image/svg+xml;charset=utf-8" });
-    const objectUrl = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
+    const svgString = new XMLSerializer().serializeToString(svg);
+    const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+    const DOMURL = window.URL || window.webkitURL || window;
+    const urlBlob = DOMURL.createObjectURL(svgBlob);
 
-    anchor.href = objectUrl;
-    anchor.download = "ucsmsc-qr.svg";
-    anchor.click();
-    URL.revokeObjectURL(objectUrl);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const scale = 4; // High resolution PNG
+      canvas.width = 512 * scale;
+      canvas.height = 512 * scale;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      DOMURL.revokeObjectURL(urlBlob);
+
+      const pngUrl = canvas.toDataURL("image/png");
+      const anchor = document.createElement("a");
+      anchor.href = pngUrl;
+      anchor.download = "ucsmsc-qr.png";
+      anchor.click();
+    };
+    img.src = urlBlob;
   }
 
   return (
@@ -76,10 +97,11 @@ export function ShareQr({ url, name }: ShareQrProps) {
       </div>
 
       <div className="min-w-0 flex-1">
-        <h3 className="font-display text-lg text-text">Share this page</h3>
+        <h3 className="font-display text-lg text-text">
+          {t(uiStrings.shareQr.title)}
+        </h3>
         <p className="mt-1.5 text-sm leading-relaxed text-muted">
-          Scan the code or send the link to keep everyone on the official
-          source.
+          {t(uiStrings.shareQr.description)}
         </p>
         <p className="mt-2 truncate font-mono text-xs text-muted">{url}</p>
 
@@ -87,10 +109,10 @@ export function ShareQr({ url, name }: ShareQrProps) {
           <button type="button" onClick={share} className={downloadButton}>
             <Share2 className="size-4" aria-hidden="true" />
             {shared === "done"
-              ? "Link ready"
+              ? t(uiStrings.shareQr.linkReady)
               : shared === "failed"
-                ? "Share cancelled"
-                : "Share"}
+                ? t(uiStrings.shareQr.shareCancelled)
+                : t(uiStrings.shareQr.shareBtn)}
           </button>
 
           <button type="button" onClick={copyLink} className={downloadButton}>
@@ -100,19 +122,19 @@ export function ShareQr({ url, name }: ShareQrProps) {
               <Link2 className="size-4" aria-hidden="true" />
             )}
             {copied === "done"
-              ? "Copied"
+              ? t(uiStrings.shareQr.copied)
               : copied === "failed"
-                ? "Copy failed"
-                : "Copy link"}
+                ? t(uiStrings.shareQr.copyFailed)
+                : t(uiStrings.shareQr.copyLink)}
           </button>
 
           <button
             type="button"
-            onClick={downloadSvg}
+            onClick={downloadPng}
             className={downloadButton}
           >
             <Download className="size-4" aria-hidden="true" />
-            Save QR
+            {t(uiStrings.shareQr.saveQr)}
           </button>
         </div>
       </div>

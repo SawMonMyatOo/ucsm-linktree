@@ -1,18 +1,24 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
 import { Glyph } from "@/components/glyph";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { faculties } from "@/data/links";
+import { useLanguage } from "@/context/language-context";
+import { uiStrings } from "@/data/translations";
 
 export function FacultyGrid() {
+  const { t } = useLanguage();
+
   if (faculties.length === 0) return null;
 
   return (
     <section id="faculties" className="scroll-mt-24 border-t border-line py-14 sm:py-20">
       <SectionHeading
-        eyebrow="Academics"
-        title="Faculties & departments"
-        description="The departments and programmes offered across the institute."
+        eyebrow={t(uiStrings.facultiesSection.eyebrow)}
+        title={t(uiStrings.facultiesSection.title)}
+        description={t(uiStrings.facultiesSection.description)}
       />
 
       <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
@@ -34,14 +40,14 @@ export function FacultyGrid() {
               </div>
 
               <h3 className="mt-4 text-base font-semibold text-text">
-                {faculty.name}
+                {t(faculty.name)}
               </h3>
               <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted">
-                {faculty.description}
+                {t(faculty.description)}
               </p>
 
               <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand">
-                View faculty
+                {t(uiStrings.facultiesSection.viewFaculty)}
                 <ArrowUpRight
                   className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   aria-hidden="true"

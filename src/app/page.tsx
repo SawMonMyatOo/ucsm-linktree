@@ -8,18 +8,19 @@ import { ShareQr } from "@/components/share-qr";
 import { SiteHeader } from "@/components/site-header";
 import { SocialRow } from "@/components/social-row";
 import { site, siteUrl } from "@/data/site";
+import { FooterSection } from "@/components/footer-section";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollegeOrUniversity",
-  name: site.name,
-  alternateName: site.shortName,
+  name: site.name.en,
+  alternateName: site.shortName.en,
   url: siteUrl,
   logo: `${siteUrl}${site.logo}`,
-  description: site.shortDescription,
+  description: site.shortDescription.en,
   address: {
     "@type": "PostalAddress",
-    addressLocality: site.contact.address,
+    addressLocality: site.contact.address.en,
     addressCountry: "MM",
   },
   contactPoint: [
@@ -56,40 +57,11 @@ export default function Home() {
         <ContactFooter />
 
         <Reveal>
-          <ShareQr url={siteUrl} name={site.name} />
+          <ShareQr url={siteUrl} name={site.name.en} />
         </Reveal>
       </main>
 
-      <footer className="mt-14 border-t border-line bg-brand py-10 text-on-brand sm:mt-20">
-        <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-3 px-5 text-center">
-          <p className="font-display text-lg">{site.shortName}</p>
-          <p className="max-w-md text-xs leading-relaxed text-on-brand/70">
-            {site.name} — {site.eyebrow}. This page links to the university’s
-            official services.
-          </p>
-          <p className="text-xs text-on-brand/50">
-            &copy; {new Date().getFullYear()} {site.name}
-          </p>
-          <nav
-            aria-label="Policies"
-            className="flex items-center gap-4 text-xs text-on-brand/70"
-          >
-            <Link
-              href="/privacy"
-              className="underline-offset-2 transition-colors hover:text-on-brand hover:underline"
-            >
-              Privacy Policy
-            </Link>
-            <span aria-hidden="true">·</span>
-            <Link
-              href="/cookies"
-              className="underline-offset-2 transition-colors hover:text-on-brand hover:underline"
-            >
-              Cookie Policy
-            </Link>
-          </nav>
-        </div>
-      </footer>
+      <FooterSection />
     </>
   );
 }

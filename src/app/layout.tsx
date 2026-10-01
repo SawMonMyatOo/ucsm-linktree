@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import { CookieBanner } from "@/components/cookie-banner";
+import { LanguageProvider } from "@/context/language-context";
 import { site, siteUrl } from "@/data/site";
 import "./globals.css";
 
@@ -20,11 +21,11 @@ const display = Source_Serif_4({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.name} — Official Links`,
-    template: `%s · ${site.shortName}`,
+    default: `${site.name.en} — Official Links`,
+    template: `%s · ${site.shortName.en}`,
   },
-  description: site.shortDescription,
-  applicationName: site.name,
+  description: site.shortDescription.en,
+  applicationName: site.name.en,
   keywords: [
     "UCSM",
     "University of Computer Studies, Mandalay",
@@ -35,28 +36,28 @@ export const metadata: Metadata = {
     "မန္တလေးကွန်ပျူတာတက္ကသိုလ်",
     "မကပတ"
   ],
-  authors: [{ name: site.name, url: site.officialWebsite }],
+  authors: [{ name: site.name.en, url: site.officialWebsite }],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: siteUrl,
-    siteName: site.name,
-    title: `${site.name} — Official Links`,
-    description: site.shortDescription,
+    siteName: site.name.en,
+    title: `${site.name.en} — Official Links`,
+    description: site.shortDescription.en,
     locale: "en_US",
     images: [
       {
         url: site.socialPreview,
         width: 1200,
         height: 630,
-        alt: site.name,
+        alt: site.name.en,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Official Links`,
-    description: site.shortDescription,
+    title: `${site.name.en} — Official Links`,
+    description: site.shortDescription.en,
     images: [site.socialPreview],
   },
   icons: {
@@ -94,8 +95,10 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        {children}
-        <CookieBanner />
+        <LanguageProvider>
+          {children}
+          <CookieBanner />
+        </LanguageProvider>
       </body>
     </html>
   );

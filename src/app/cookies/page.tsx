@@ -5,7 +5,7 @@ import { site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
-  description: `What cookies and similar technologies ${site.name} uses on ucsmsc.org.`,
+  description: `What cookies and similar technologies ${site.name.en} uses on ucsmsc.org.`,
   alternates: { canonical: "/cookies" },
 };
 
@@ -122,7 +122,7 @@ export default function CookiePage() {
         <p>
           Questions? Email{" "}
           <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or
-          call {site.contact.phone}. {site.name}, {site.contact.address}.
+          call {site.contact.phone}. {site.name.en}, {site.contact.address.en}.
         </p>
       </section>
     </LegalPage>

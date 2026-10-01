@@ -5,7 +5,7 @@ import { site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: `How ${site.name} handles personal data on ucsmsc.org.`,
+  description: `How ${site.name.en} handles personal data on ucsmsc.org.`,
   alternates: { canonical: "/privacy" },
 };
 
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       <section>
         <h2>Who we are</h2>
         <p>
-          {site.name} (&ldquo;UCSM&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;)
+          {site.name.en} (&ldquo;UCSM&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;)
           operates the link directory at <strong>www.ucsmsc.org</strong>{" "}
           (&ldquo;this website&rdquo;) to help students, applicants and
           visitors reach the university&rsquo;s official online services. This
@@ -138,7 +138,7 @@ export default function PrivacyPage() {
       <section>
         <h2>Contact</h2>
         <p>
-          Data controller: {site.name}, {site.contact.address}.
+          Data controller: {site.name.en}, {site.contact.address.en}.
         </p>
         <p>
           Email:{" "}

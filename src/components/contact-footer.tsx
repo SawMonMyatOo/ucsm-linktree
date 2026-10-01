@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import { Glyph } from "@/components/glyph";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { site } from "@/data/site";
+import { useLanguage } from "@/context/language-context";
+import { uiStrings } from "@/data/translations";
 
 const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(
   site.contact.mapQuery,
@@ -12,34 +16,36 @@ const mapLinkUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIC
   site.contact.mapQuery,
 )}`;
 
-const contactItems = [
-  {
-    icon: "phone",
-    label: "Phone",
-    value: site.contact.phone,
-    href: `tel:${site.contact.phoneHref}`,
-  },
-  {
-    icon: "mail",
-    label: "Email",
-    value: site.contact.email,
-    href: `mailto:${site.contact.email}`,
-  },
-  {
-    icon: "mapPin",
-    label: "Address",
-    value: site.contact.address,
-    href: mapLinkUrl,
-  },
-] as const;
-
 export function ContactFooter() {
+  const { t } = useLanguage();
+
+  const contactItems = [
+    {
+      icon: "phone",
+      label: t(uiStrings.contactFooter.phoneLabel),
+      value: site.contact.phone,
+      href: `tel:${site.contact.phoneHref}`,
+    },
+    {
+      icon: "mail",
+      label: t(uiStrings.contactFooter.emailLabel),
+      value: site.contact.email,
+      href: `mailto:${site.contact.email}`,
+    },
+    {
+      icon: "mapPin",
+      label: t(uiStrings.contactFooter.addressLabel),
+      value: t(site.contact.address),
+      href: mapLinkUrl,
+    },
+  ] as const;
+
   return (
     <section id="connect" className="scroll-mt-24 border-t border-line py-14 sm:py-20">
       <SectionHeading
-        eyebrow="Get in touch"
-        title="Visit the campus"
-        description="Reception is open on weekdays. Call ahead for appointments with faculty offices."
+        eyebrow={t(uiStrings.contactFooter.eyebrow)}
+        title={t(uiStrings.contactFooter.title)}
+        description={t(uiStrings.contactFooter.description)}
       />
 
       <div className="grid gap-3 sm:grid-cols-3">
@@ -70,7 +76,7 @@ export function ContactFooter() {
           <div className="relative h-56 sm:h-72">
             <Image
               src={site.campusImage}
-              alt={`${site.name} campus`}
+              alt={`${t(site.name)} campus`}
               fill
               sizes="(min-width: 640px) 720px, 100vw"
               className="object-cover"
@@ -80,7 +86,7 @@ export function ContactFooter() {
               aria-hidden="true"
             />
             <iframe
-              title={`Map showing ${site.name}`}
+              title={`Map showing ${t(site.name)}`}
               src={mapEmbedUrl}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -89,14 +95,14 @@ export function ContactFooter() {
             />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-5 py-4">
-            <p className="text-sm text-muted">{site.contact.address}</p>
+            <p className="text-sm text-muted">{t(site.contact.address)}</p>
             <a
               href={mapLinkUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-semibold text-brand hover:text-brand-hover"
             >
-              Open in Google Maps
+              {t(uiStrings.contactFooter.openInMaps)}
             </a>
           </div>
         </div>

@@ -3,9 +3,9 @@ import { site } from "@/data/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: site.name,
-    short_name: site.shortName,
-    description: site.shortDescription,
+    name: site.name.en,
+    short_name: site.shortName.en,
+    description: site.shortDescription.en,
     start_url: "/",
     display: "standalone",
     background_color: "#F2F0EA",

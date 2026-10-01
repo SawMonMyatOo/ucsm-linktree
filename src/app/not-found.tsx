@@ -14,7 +14,7 @@ export default function NotFound() {
         href="/"
         className="mt-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-on-brand transition-colors hover:bg-brand-hover"
       >
-        Back to {site.shortName}
+        Back to {site.shortName.en}
       </Link>
     </main>
   );

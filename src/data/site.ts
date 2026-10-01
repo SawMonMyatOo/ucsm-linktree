@@ -1,5 +1,10 @@
 import type { BrandName } from "@/lib/brand-icons";
 
+export type Bilingual = {
+  en: string;
+  mm: string;
+};
+
 /**
  * ---------------------------------------------------------------------------
  * EDIT THIS FILE to change the university's identity, contact details,
@@ -7,12 +12,26 @@ import type { BrandName } from "@/lib/brand-icons";
  * ---------------------------------------------------------------------------
  */
 export const site = {
-  name: "University of Computer Studies, Mandalay",
-  shortName: "UCSM",
-  eyebrow: "Patheingyi, Myanmar",
-  tagline: "Shaping digital futures since 1997",
-  shortDescription:
-    "The national institute of computer studies in Myanmar — undergraduate and graduate programmes in computing, information technology and business computing.",
+  name: {
+    en: "University of Computer Studies, Mandalay",
+    mm: "မန္တလေးကွန်ပျူတာတက္ကသိုလ်",
+  },
+  shortName: {
+    en: "UCSM",
+    mm: "မကပတ",
+  },
+  eyebrow: {
+    en: "Patheingyi, Myanmar",
+    mm: "ပုသိမ်ကြီး၊ မြန်မာနိုင်ငံ",
+  },
+  tagline: {
+    en: "Shaping digital futures since 1997",
+    mm: "၁၉၉၇ ခုနှစ်မှစတင်၍ ဒစ်ဂျစ်တယ် အနာဂတ်များကို ဖန်တီးပုံဖော်နေပါသည်",
+  },
+  shortDescription: {
+    en: "The national institute of computer studies in Myanmar — undergraduate and graduate programmes in computing, information technology and business computing.",
+    mm: "မြန်မာနိုင်ငံ၏ အမျိုးသားကွန်ပျူတာပညာ တက္ကသိုလ် — ကွန်ပျူတာပညာ၊ သတင်းအချက်အလက်နည်းပညာနှင့် စီးပွားရေးကွန်ပျူတာပညာ ဘွဲ့ကြိုနှင့်ဘွဲ့လွန်သင်တန်းများ။",
+  },
 
   /** The university's real website. Linked as the featured card on the page. */
   officialWebsite: "https://www.ucsm.edu.mm",
@@ -31,7 +50,10 @@ export const site = {
     // TODO: replace with the real admissions / general enquiries inbox.
     email: "info@ucsmsc.org",
     // TODO: replace with the campus address.
-    address: "Mandalay - Mogok Rd., Patheingyi Township, Mandalay, Myanmar, 05071",
+    address: {
+      en: "Mandalay - Mogok Rd., Patheingyi Township, Mandalay, Myanmar, 05071",
+      mm: "မန္တလေး - မိုးကုတ်လမ်း၊ ပုသိမ်ကြီးမြို့နယ်၊ မန္တလေး၊ မြန်မာနိုင်ငံ၊ ၀၅၀၇၁",
+    },
     // Keyless embed that resolves from the place name. Swap for a lat/lng
     // query or your own Google Maps embed URL if you prefer.
     mapQuery: "University of Computer Studies, Mandaly, Kangyi, Myanmar (Burma)",

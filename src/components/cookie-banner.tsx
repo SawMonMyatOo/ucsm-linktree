@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Cookie } from "lucide-react";
+import { useLanguage } from "@/context/language-context";
+import { uiStrings } from "@/data/translations";
 
 const CONSENT_KEY = "ucsm-cookie-consent";
 
@@ -32,6 +34,7 @@ function readStoredConsent(): Consent | null {
 }
 
 export function CookieBanner() {
+  const { t } = useLanguage();
   /**
    * `null` while rendering on the server and on the client's first pass, so
    * both agree the banner is hidden; after mount we reveal it only when no
@@ -92,24 +95,22 @@ export function CookieBanner() {
               </span>
               <div>
                 <h2 className="font-display text-base text-text">
-                  We use cookies
+                  {t(uiStrings.cookieBanner.title)}
                 </h2>
                 <p className="mt-1 text-sm leading-relaxed text-muted">
-                  This site uses essential cookies to remember your theme
-                  preference. Optional analytics cookies help us understand how
-                  students use the page — they are only set with your consent.{" "}
+                  {t(uiStrings.cookieBanner.description)}{" "}
                   <Link
                     href="/privacy"
                     className="font-semibold text-brand underline-offset-2 hover:underline"
                   >
-                    Privacy Policy
+                    {t(uiStrings.cookieBanner.privacyPolicyLink)}
                   </Link>{" "}
                   ·{" "}
                   <Link
                     href="/cookies"
                     className="font-semibold text-brand underline-offset-2 hover:underline"
                   >
-                    Cookie Policy
+                    {t(uiStrings.cookieBanner.cookiePolicyLink)}
                   </Link>
                 </p>
               </div>
@@ -120,14 +121,14 @@ export function CookieBanner() {
                 onClick={() => choose("declined")}
                 className="rounded-full border border-line px-4 py-2 text-sm font-semibold text-text transition-colors hover:border-accent"
               >
-                Decline optional
+                {t(uiStrings.cookieBanner.declineOptional)}
               </button>
               <button
                 type="button"
                 onClick={() => choose("accepted")}
                 className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-on-brand transition-colors hover:bg-brand-hover"
               >
-                Accept all
+                {t(uiStrings.cookieBanner.acceptAll)}
               </button>
             </div>
           </div>

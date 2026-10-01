@@ -1,11 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { LocalDate } from "@/components/local-date";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { announcements } from "@/data/links";
+import { useLanguage } from "@/context/language-context";
+import { uiStrings } from "@/data/translations";
 
 export function Announcements() {
+  const { t } = useLanguage();
+
   if (announcements.length === 0) return null;
 
   const sorted = [...announcements].sort((a, b) =>
@@ -15,14 +21,14 @@ export function Announcements() {
   return (
     <section id="announcements" className="scroll-mt-24 border-t border-line py-14 sm:py-20">
       <SectionHeading
-        eyebrow="Notice board"
-        title="Latest announcements"
-        description="Notices from the rectorate, faculties and departments."
+        eyebrow={t(uiStrings.announcements.eyebrow)}
+        title={t(uiStrings.announcements.title)}
+        description={t(uiStrings.announcements.description)}
       />
 
       <div className="grid gap-3 sm:gap-4">
         {sorted.map((item, index) => (
-          <Reveal key={item.title} delay={index * 60}>
+          <Reveal key={item.title.en} delay={index * 60}>
             <a
               href={item.href}
               target="_blank"
@@ -44,7 +50,7 @@ export function Announcements() {
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full bg-brand-soft px-2.5 py-0.5 text-[0.7rem] font-semibold tracking-wide text-brand uppercase">
-                    {item.tag}
+                    {t(item.tag)}
                   </span>
                   <span className="text-xs text-muted">
                     <LocalDate date={item.date} />
@@ -52,10 +58,10 @@ export function Announcements() {
                 </div>
 
                 <h3 className="mt-2 text-base font-semibold text-text">
-                  {item.title}
+                  {t(item.title)}
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                  {item.excerpt}
+                  {t(item.excerpt)}
                 </p>
               </div>
 

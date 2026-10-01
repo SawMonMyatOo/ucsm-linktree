@@ -25,9 +25,9 @@ export function LegalPage({
             className="inline-flex items-center gap-2 text-sm font-semibold text-brand transition-colors hover:text-brand-hover"
           >
             <ArrowLeft className="size-4" aria-hidden="true" />
-            Back to {site.shortName}
+            Back to {site.shortName.en}
           </Link>
-          <span className="font-display text-sm text-muted">{site.name}</span>
+          <span className="font-display text-sm text-muted">{site.name.en}</span>
         </div>
       </header>
 
@@ -54,7 +54,7 @@ export function LegalPage({
       <footer className="border-t border-line py-8">
         <div className="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-3 px-5 text-sm text-muted">
           <p>
-            &copy; {new Date().getFullYear()} {site.name}
+            &copy; {new Date().getFullYear()} {site.name.en}
           </p>
           <nav aria-label="Policies" className="flex gap-4">
             <Link href="/privacy" className="hover:text-brand">

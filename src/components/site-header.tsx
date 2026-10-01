@@ -1,16 +1,23 @@
+"use client";
+
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageToggle } from "@/components/language-toggle";
 import { site } from "@/data/site";
-
-const anchorLinks = [
-  { href: "#links", label: "Links" },
-  { href: "#announcements", label: "Notices" },
-  { href: "#faculties", label: "Faculties" },
-  { href: "#connect", label: "Connect" },
-];
+import { useLanguage } from "@/context/language-context";
+import { uiStrings } from "@/data/translations";
 
 export function SiteHeader() {
+  const { t, language } = useLanguage();
+
+  const anchorLinks = [
+    { href: "#links", label: t(uiStrings.header.links) },
+    { href: "#announcements", label: t(uiStrings.header.notices) },
+    { href: "#faculties", label: t(uiStrings.header.faculties) },
+    { href: "#connect", label: t(uiStrings.header.connect) },
+  ];
+
   return (
     <header className="relative isolate overflow-hidden bg-brand">
       <Image
@@ -34,28 +41,28 @@ export function SiteHeader() {
         <div className="relative size-28 overflow-hidden rounded-full border-4 border-accent/70 shadow-lg sm:size-32">
           <Image
             src={site.logo}
-            alt={`${site.name} logo`}
+            alt={`${t(site.name)} logo`}
             fill
             priority
             className="object-cover"
           />
         </div>
 
-        <p className="mt-6 text-xs font-semibold tracking-[0.28em] text-accent uppercase">
-          {site.eyebrow}
+        <p className={`mt-6 text-xs font-semibold tracking-[0.28em] text-accent uppercase ${language === "mm" ? "font-custom" : ""}`}>
+          {t(site.eyebrow)}
         </p>
 
-        <h1 className="mt-3 font-display text-3xl leading-[1.15] text-on-brand sm:text-5xl">
-          {site.name}
+        <h1 className={`mt-3 font-display text-3xl leading-[1.15] text-on-brand sm:text-5xl ${language === "mm" ? "font-custom" : ""}`}>
+          {t(site.name)}
         </h1>
 
         <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-on-brand/10 px-4 py-1.5 text-xs font-medium text-on-brand">
           <Check className="size-3.5 text-accent" aria-hidden="true" />
-          Verified Institution
+          <span className={language === "mm" ? "font-custom" : ""}>{t(uiStrings.header.verifiedInstitution)}</span>
         </div>
 
-        <p className="mt-5 max-w-xl text-sm leading-relaxed text-on-brand/80 sm:text-base">
-          {site.tagline}
+        <p className={`mt-5 max-w-xl text-sm leading-relaxed text-on-brand/80 sm:text-base ${language === "mm" ? "font-custom" : ""}`}>
+          {t(site.tagline)}
         </p>
       </div>
 
@@ -69,13 +76,14 @@ export function SiteHeader() {
               <a
                 key={item.href}
                 href={item.href}
-                className="shrink-0 rounded-full px-3 py-1.5 text-sm font-medium text-on-brand/75 transition-colors hover:bg-on-brand/10 hover:text-on-brand"
+                className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium text-on-brand/75 transition-colors hover:bg-on-brand/10 hover:text-on-brand ${language === "mm" ? "font-custom" : ""}`}
               >
                 {item.label}
               </a>
             ))}
           </nav>
-          <div className="py-2 pl-2">
+          <div className="flex items-center gap-2 py-2 pl-2">
+            <LanguageToggle />
             <ThemeToggle />
           </div>
         </div>

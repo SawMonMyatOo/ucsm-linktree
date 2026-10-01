@@ -1,17 +1,23 @@
+"use client";
+
 import { SocialIcon } from "@/components/social-icon";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { socials } from "@/data/site";
+import { useLanguage } from "@/context/language-context";
+import { uiStrings } from "@/data/translations";
 
 export function SocialRow() {
+  const { t } = useLanguage();
+
   if (socials.length === 0) return null;
 
   return (
     <section id="social" className="scroll-mt-24 border-t border-line py-14 sm:py-20">
       <SectionHeading
-        eyebrow="Follow along"
-        title="Official social channels"
-        description="Verified pages run by the university. Watch out for impostor accounts."
+        eyebrow={t(uiStrings.socialsSection.eyebrow)}
+        title={t(uiStrings.socialsSection.title)}
+        description={t(uiStrings.socialsSection.description)}
       />
 
       <Reveal>

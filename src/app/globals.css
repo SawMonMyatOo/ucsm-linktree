@@ -2,6 +2,29 @@
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+/* 
+  ===========================================================================
+  CUSTOM FONT CONFIGURATION
+  ---------------------------------------------------------------------------
+  To use your custom font:
+  1. Place your font file (e.g. MyFont.woff2 or MyFont.ttf) inside `public/fonts/`.
+  2. Uncomment and configure the @font-face rule below.
+  ===========================================================================
+*/
+
+@font-face {
+  font-family: "CustomFont";
+  src: url("/fonts/NOTOSAN MYANMAR UI BOLD.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+.font-custom {
+  font-family: "CustomFont", "Pyidaungsu", "Myanmar Text", "Padauk", sans-serif;
+}
+
 :root,
 [data-theme="light"] {
   --brand: #7a2028;
@@ -54,7 +77,7 @@
   --color-ring: var(--ring);
 
   --font-display: var(--font-display-family), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans-family), "Pyidaungsu", "Myanmar Text", "Padauk", "Myanmar Sangam MN", ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 1rem;
 
@@ -80,8 +103,11 @@ html {
 body {
   background-color: var(--page);
   color: var(--text);
-  font-family: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
   overflow-x: hidden;
 }
 

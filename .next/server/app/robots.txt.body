@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://www.ucsmsc.org
+Sitemap: https://www.ucsmsc.org/sitemap.xml

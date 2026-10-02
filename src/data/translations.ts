@@ -71,6 +71,31 @@ export const uiStrings = {
     copyFailed: { en: "Copy failed", mm: "ကူးယူ၍မရပါ" },
     saveQr: { en: "Save QR", mm: "QR ကို သိမ်းဆည်းရန်" },
   },
+  admissions: {
+    backToHome: { en: "Back to UCSM", mm: "မကပတ ပင်မသို့" },
+    sessionEyebrow: { en: "Current session", mm: "လက်ရှိ အတွက်" },
+    opensOn: { en: "Applications open", mm: "လျှောက်ထားရန် စတင်သည့်ရက်" },
+    closesOn: { en: "Applications close", mm: "လျှောက်ထားရန် ပိတ်မည့်ရက်" },
+    applyNow: { en: "Apply online", mm: "အွန်လိုင်း လျှောက်ထားရန်" },
+    checkStatus: { en: "Check application status", mm: "လျှောက်လွှာ အခြေအနေ စစ်ဆေးရန်" },
+    externalNote: {
+      en: "Opens the official university website in a new tab.",
+      mm: "တရားဝင်ဝဘ်ဆိုက်ကို တစ်ဆိုက်အသစ်တွင် ဖွင့်ပါမည်။",
+    },
+    callLabel: { en: "Call", mm: "ဖုန်းခေါ်ရန်" },
+    linksSection: {
+      eyebrow: { en: "Official links", mm: "တရားဝင်လင့်ခ်များ" },
+      title: { en: "Go straight there", mm: "တိုက်ရိုက်သွားရန်" },
+      description: {
+        en: "Every link below is the university's own. Check the address before you sign in.",
+        mm: "အောက်ပါလင့်ခ်များအားလုံးသည် တက္ကသိုလ်၏ လင့်ခ်များဖြစ်ပါသည်။ အကောင့်ဝင်မည့်အခါ လိပ်စာကို စစ်ဆေးပါ။",
+      },
+    },
+    disclaimer: {
+      en: "Admissions are run by the university. This page reproduces the official entrance notice — if anything here differs from the university's announcement, the announcement is correct.",
+      mm: "ဝင်ခွင့်လုပ်ငန်းစဉ်ကို တက္ကသိုလ်က လုပ်ဆောင်ပါသည်။ ဤစာမျက်နှာသည် တရားဝင် ဝင်စာမေးပွဲသတ်မှတ်ချက်ကို ဖော်ပြခြင်းဖြစ်ပြီး၊ တရားဝင်ကြေညာချက်နှင့် ကိုယ်တိုင်မှတ်တမ်းချက်ကို တူညီအောင် မဟုတ်ပါက ကြေညာချက်ကို အမှန်အကန် အဖြစ်ပါသည်။",
+    },
+  },
   cookieBanner: {
     title: { en: "We use cookies", mm: "ကွတ်ကီးများ (Cookies) အသုံးပြုပါသည်" },
     description: {

@@ -5,6 +5,13 @@ type SectionHeadingProps = {
   title: string;
   description?: string;
   action?: ReactNode;
+  /** Applied to the `h2` so a wrapping `<section>` can point `aria-labelledby` at it. */
+  id?: string;
+  /**
+   * Extra classes for the `h2`. Needed where a heading carries Burmese text
+   * that must render in the sans stack instead of the serif display face.
+   */
+  titleClassName?: string;
 };
 
 export function SectionHeading({
@@ -12,6 +19,8 @@ export function SectionHeading({
   title,
   description,
   action,
+  id,
+  titleClassName,
 }: SectionHeadingProps) {
   return (
     <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
@@ -22,7 +31,7 @@ export function SectionHeading({
             {eyebrow}
           </span>
         </div>
-        <h2 className="mt-3 font-display text-2xl leading-tight text-text sm:text-3xl">
+        <h2 id={id} className={`mt-3 font-display text-2xl leading-tight text-text sm:text-3xl ${titleClassName ?? ""}`}>
           {title}
         </h2>
         {description ? (

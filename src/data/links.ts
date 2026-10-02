@@ -52,7 +52,7 @@ export const primaryLinks: LinkItem[] = [
   {
     title: { en: "Admissions", mm: "ဝင်ခွင့်အချက်အလက်" },
     description: { en: "Apply for the new academic year", mm: "ပညာသင်နှစ်သစ်အတွက် လျှောက်ထားရန်" },
-    href: "https://www.ucsm.edu.mm/entranceinfo/",
+    href: "/admissions",
     icon: "graduationCap",
   },
   {
